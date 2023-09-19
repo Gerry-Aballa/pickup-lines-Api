@@ -1,3 +1,3 @@
-## Flask app API that returns a random pickupline from and external database
+# Flask API that returns a random pickupline
 
 ### Requirements
