@@ -7,4 +7,4 @@ class Line(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     mood = Column(String)
-    pickupLine = Column(String)
+    pickupline = Column(String)

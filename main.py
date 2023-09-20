@@ -27,14 +27,9 @@ async def root():
     return {"message": "Hello Python"}
 
 
-# @app.post("/lines/")  # Add pickuplines to the database
-# def create_line(line: Line):
-#     db = SessionLocal()
-#     db.add(line)
-#     db.commit()
-#     db.refresh(line)
-#     db.close()
-#     return line
+@app.post("/lines/", response_model=schemas.Line)  # Add pickuplines to the database
+def create_line(line: schemas.LineCreate, db: Session = Depends(db_connection)):
+    return api.create_pickupline(db=db, line=line)
 
 
 @app.get("/lines/random", response_model=schemas.Line)  # Return a random pickupline from the database
