@@ -5,6 +5,10 @@ from app import api, schemas, models
 
 from app.dependencies.database import SessionLocal, engine
 
+from typing import List
+
+from os import getenv
+
 models.Base.metadata.create_all(bind=engine)
 
 # Create a FastAPI app instance
@@ -23,12 +27,12 @@ def db_connection():
 
 @app.get("/")
 async def root():
-    return {"message": "Hello Python"}
+    return {"message": "Hello Python. This is a pickup lines API"}
 
 
-@app.post("/lines/", response_model=schemas.Line)  # Add pickuplines to the database
-def create_line(line: schemas.LineCreate, db: Session = Depends(db_connection)):
-    return api.create_pickupline(db=db, line=line)
+# @app.post("/lines/", response_model=List[schemas.Line])  # Add pickuplines to the database
+# def create_line(lines: List[schemas.LineCreate], db: Session = Depends(db_connection)):
+#     return [api.create_pickupline(db=db, line=line) for line in lines]
 
 
 @app.get("/lines/random", response_model=schemas.Line)  # Return a random pickupline from the database
@@ -39,6 +43,9 @@ def random_line(db: Session = Depends(db_connection)):
     return random_line
 
 
-# if __name__ == "__main__":
-#    import uvicorn
+if __name__ == "__main__":
+   import uvicorn
 #    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+   port = int(getenv("PORT", 8000))
+   uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+   
