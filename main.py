@@ -1,4 +1,3 @@
-import uvicorn
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 
@@ -41,4 +40,5 @@ def random_line(db: Session = Depends(db_connection)):
 
 
 if __name__ == "__main__":
+   import uvicorn
    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
