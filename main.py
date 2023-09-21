@@ -25,9 +25,9 @@ def db_connection():
 
 # Create API endpoints
 
-@app.get("/")
-async def root():
-    return {"message": "Hello Python. This is a pickup lines API"}
+# @app.get("/")
+# async def root():
+#     return {"message": "Hello Python. This is a pickup lines API"}
 
 
 # @app.post("/lines/", response_model=List[schemas.Line])  # Add pickuplines to the database
@@ -46,6 +46,5 @@ def random_line(db: Session = Depends(db_connection)):
 if __name__ == "__main__":
    import uvicorn
 #    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
-   port = int(getenv("PORT", 8000))
    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
    
