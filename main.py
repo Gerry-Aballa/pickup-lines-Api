@@ -1,13 +1,15 @@
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 
+import uvicorn
+
 from app import api, schemas, models
 
 from app.dependencies.database import SessionLocal, engine
 
 from typing import List
 
-from os import getenv
+
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -25,9 +27,9 @@ def db_connection():
 
 # Create API endpoints
 
-# @app.get("/")
-# async def root():
-#     return {"message": "Hello Python. This is a pickup lines API"}
+@app.get("/")
+async def root():
+    return {"Hello!": "This is a pickup lines API utilizing FastApi!\n Add /docs at the url to try this API "}
 
 
 # @app.post("/lines/", response_model=List[schemas.Line])  # Add pickuplines to the database
@@ -44,7 +46,6 @@ def random_line(db: Session = Depends(db_connection)):
 
 
 if __name__ == "__main__":
-   import uvicorn
-#    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+   
    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
    
