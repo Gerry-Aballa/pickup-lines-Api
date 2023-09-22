@@ -29,7 +29,7 @@ def db_connection():
 
 @app.get("/")
 async def root():
-    return {"Hello!": "This is a pickup lines API utilizing FastApi!\n Add /docs at the url to try this API "}
+    return {"Hello!": "This is a pickup lines API utilizing FastApi! Add /docs at the url to try this API "}
 
 
 # @app.post("/lines/", response_model=List[schemas.Line])  # Add pickuplines to the database
